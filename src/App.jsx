@@ -3,19 +3,19 @@ import { studyFiles, kpiData, scenarioData, channelMixData, agents, decisionRule
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, Legend, AreaChart, Area } from 'recharts'
 
 // ═══════════════════════════════════════════════════
-// SIDEBAR COMPONENT
+// COMPONENTE SIDEBAR
 // ═══════════════════════════════════════════════════
 function Sidebar({ currentPage, onNavigate }) {
     const navItems = [
-        { id: 'dashboard', icon: '◆', label: 'Dashboard', badge: null, section: 'OVERVIEW' },
-        { id: 'studies', icon: '📄', label: 'Study Viewer', badge: '9', section: 'OVERVIEW' },
-        { id: 'metrics', icon: '📊', label: 'Metrics', badge: null, section: 'OPERATIONS' },
-        { id: 'agents', icon: '🤖', label: 'Agent Hub', badge: '6', section: 'OPERATIONS' },
-        { id: 'decisions', icon: '⚡', label: 'Decision Engine', badge: '12', section: 'OPERATIONS' },
-        { id: 'inventory', icon: '📦', label: 'Inventory & 3PL', badge: '8', section: 'OPERATIONS' },
-        { id: 'stores', icon: '🏪', label: 'Store Connector', badge: null, section: 'INTEGRATIONS' },
-        { id: 'roadmap', icon: '🗺️', label: 'Roadmap', badge: null, section: 'PLANNING' },
-        { id: 'validation', icon: '✓', label: 'Data Validation', badge: '23', section: 'PLANNING' },
+        { id: 'dashboard', icon: '◆', label: 'Panel Principal', badge: null, section: 'GENERAL' },
+        { id: 'studies', icon: '📄', label: 'Visor de Estudios', badge: '9', section: 'GENERAL' },
+        { id: 'metrics', icon: '📊', label: 'Métricas', badge: null, section: 'OPERACIONES' },
+        { id: 'agents', icon: '🤖', label: 'Hub de Agentes', badge: '6', section: 'OPERACIONES' },
+        { id: 'decisions', icon: '⚡', label: 'Motor de Decisiones', badge: '14', section: 'OPERACIONES' },
+        { id: 'inventory', icon: '📦', label: 'Inventario y 3PL', badge: '8', section: 'OPERACIONES' },
+        { id: 'stores', icon: '🏪', label: 'Conector de Tiendas', badge: null, section: 'INTEGRACIONES' },
+        { id: 'roadmap', icon: '🗺️', label: 'Hoja de Ruta', badge: null, section: 'PLANIFICACIÓN' },
+        { id: 'validation', icon: '✓', label: 'Validación de Datos', badge: '23', section: 'PLANIFICACIÓN' },
     ];
 
     const sections = [...new Set(navItems.map(i => i.section))];
@@ -25,7 +25,7 @@ function Sidebar({ currentPage, onNavigate }) {
             <div className="sidebar-header">
                 <div className="sidebar-logo">DS</div>
                 <div className="sidebar-title">
-                    <h1>Command Center</h1>
+                    <h1>Centro de Mando</h1>
                     <span>Dropshipping OS v6</span>
                 </div>
             </div>
@@ -50,7 +50,7 @@ function Sidebar({ currentPage, onNavigate }) {
             <div className="sidebar-footer">
                 <div className="sidebar-footer-status">
                     <div className="status-dot"></div>
-                    <span>Pre-launch · Day 0 of 90</span>
+                    <span>Pre-lanzamiento · Día 0 de 90</span>
                 </div>
             </div>
         </aside>
@@ -58,19 +58,19 @@ function Sidebar({ currentPage, onNavigate }) {
 }
 
 // ═══════════════════════════════════════════════════
-// DASHBOARD PAGE
+// PÁGINA PANEL PRINCIPAL (DASHBOARD)
 // ═══════════════════════════════════════════════════
 function DashboardPage() {
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Dashboard</h2>
-                    <div className="page-header-sub">Dropshipping OS · Pre-launch Overview</div>
+                    <h2>Panel Principal</h2>
+                    <div className="page-header-sub">Dropshipping OS · Vista General Pre-lanzamiento</div>
                 </div>
                 <div className="flex gap-sm">
-                    <span className="badge primary">V5 Complete</span>
-                    <span className="badge warning">V6 In Progress</span>
+                    <span className="badge primary">V5 Completa</span>
+                    <span className="badge warning">V6 En Progreso</span>
                 </div>
             </div>
             <div className="page-body">
@@ -81,18 +81,18 @@ function DashboardPage() {
                             <div className="kpi-label">{kpi.label}</div>
                             <div className="kpi-value">{kpi.value}</div>
                             <div className={`kpi-change ${kpi.status}`}>
-                                {kpi.change ? kpi.change : 'Pre-launch — target set'}
+                                {kpi.change ? kpi.change : 'Pre-lanzamiento — objetivo definido'}
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* Charts */}
+                {/* Gráficos */}
                 <div className="charts-grid">
                     <div className="card">
                         <div className="card-header">
-                            <h3>Revenue Projection (90 days)</h3>
-                            <span className="badge info">3 Scenarios</span>
+                            <h3>Proyección de Ingresos (90 días)</h3>
+                            <span className="badge info">3 Escenarios</span>
                         </div>
                         <div className="card-body">
                             <ResponsiveContainer width="100%" height={300}>
@@ -114,9 +114,9 @@ function DashboardPage() {
                                         contentStyle={{ background: '#1a2236', border: '1px solid rgba(148,163,184,0.12)', borderRadius: 8, fontSize: 12, color: '#f1f5f9' }}
                                         formatter={(v) => [`€${v.toLocaleString()}`, '']}
                                     />
-                                    <Area type="monotone" dataKey="optimistic" stroke="#10b981" fill="url(#colorOpt)" strokeWidth={2} name="Optimistic" />
+                                    <Area type="monotone" dataKey="optimistic" stroke="#10b981" fill="url(#colorOpt)" strokeWidth={2} name="Optimista" />
                                     <Area type="monotone" dataKey="base" stroke="#d4a853" fill="url(#colorBase)" strokeWidth={2} name="Base" />
-                                    <Line type="monotone" dataKey="pessimistic" stroke="#ef4444" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name="Pessimistic" />
+                                    <Line type="monotone" dataKey="pessimistic" stroke="#ef4444" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name="Pesimista" />
                                     <Legend wrapperStyle={{ fontSize: 11, color: '#94a3b8' }} />
                                 </AreaChart>
                             </ResponsiveContainer>
@@ -125,7 +125,7 @@ function DashboardPage() {
 
                     <div className="card">
                         <div className="card-header">
-                            <h3>Target Channel Mix</h3>
+                            <h3>Mix de Canales Objetivo</h3>
                         </div>
                         <div className="card-body" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <ResponsiveContainer width="100%" height={300}>
@@ -141,7 +141,7 @@ function DashboardPage() {
                                         stroke="none"
                                     >
                                         {channelMixData.map((entry, i) => (
-                                            <Cell key={i} fill={entry.color === '#000000' ? '#6366f1' : entry.color} />
+                                            <Cell key={i} fill={entry.color} />
                                         ))}
                                     </Pie>
                                     <Tooltip
@@ -158,11 +158,11 @@ function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Go/No-Go Gates */}
+                {/* Puertas Go/No-Go */}
                 <div className="card mb-lg">
                     <div className="card-header">
-                        <h3>Go / No-Go Gates</h3>
-                        <span className="badge warning">4 Upcoming</span>
+                        <h3>Puertas Go / No-Go</h3>
+                        <span className="badge warning">4 Próximas</span>
                     </div>
                     <div className="card-body">
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 'var(--space-md)' }}>
@@ -188,10 +188,10 @@ function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Roadmap */}
+                {/* Hoja de Ruta */}
                 <div className="card">
                     <div className="card-header">
-                        <h3>0 → 90 Day Roadmap</h3>
+                        <h3>Hoja de Ruta 0 → 90 Días</h3>
                     </div>
                     <div className="card-body">
                         <div style={{ display: 'flex', gap: 'var(--space-md)', overflowX: 'auto' }}>
@@ -206,9 +206,9 @@ function DashboardPage() {
                                 }}>
                                     <div className="flex items-center justify-between mb-md">
                                         <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent-primary)' }}>{phase.phase}</span>
-                                        <span className="text-xs text-muted">W{phase.weeks}</span>
+                                        <span className="text-xs text-muted">S{phase.weeks}</span>
                                     </div>
-                                    <div className="text-xs text-muted mb-md">Budget: {phase.budget}</div>
+                                    <div className="text-xs text-muted mb-md">Presupuesto: {phase.budget}</div>
                                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                                         {phase.tasks.map((task, j) => (
                                             <li key={j} style={{ fontSize: 12, color: 'var(--text-secondary)', padding: '3px 0', display: 'flex', alignItems: 'flex-start', gap: 6 }}>
@@ -227,7 +227,7 @@ function DashboardPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// STUDY VIEWER PAGE
+// PÁGINA VISOR DE ESTUDIOS
 // ═══════════════════════════════════════════════════
 function StudyViewerPage() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -242,22 +242,22 @@ function StudyViewerPage() {
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Study Viewer</h2>
-                    <div className="page-header-sub">Browse all research files · V3.1 + V4 + V5</div>
+                    <h2>Visor de Estudios</h2>
+                    <div className="page-header-sub">Explorar todos los archivos de investigación · V3.1 + V4 + V5</div>
                 </div>
             </div>
             <div className="page-body">
                 <div style={{ display: 'grid', gridTemplateColumns: '350px 1fr', gap: 'var(--space-lg)', height: 'calc(100vh - 140px)' }}>
-                    {/* File Browser */}
+                    {/* Explorador de Archivos */}
                     <div className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                         <div className="card-header">
-                            <h3>Files ({filtered.length})</h3>
+                            <h3>Archivos ({filtered.length})</h3>
                         </div>
                         <div style={{ padding: 'var(--space-md)' }}>
                             <div className="search-bar">
                                 <span>🔍</span>
                                 <input
-                                    placeholder="Search files or tags..."
+                                    placeholder="Buscar archivos o etiquetas..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
@@ -280,14 +280,14 @@ function StudyViewerPage() {
                         </div>
                     </div>
 
-                    {/* File Preview */}
+                    {/* Vista Previa */}
                     <div className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                         {selectedFile ? (
                             <>
                                 <div className="card-header">
                                     <div>
                                         <h3>{selectedFile.icon} {selectedFile.name}</h3>
-                                        <div className="text-xs text-muted" style={{ marginTop: 4 }}>{selectedFile.agent} · Version {selectedFile.version}</div>
+                                        <div className="text-xs text-muted" style={{ marginTop: 4 }}>{selectedFile.agent} · Versión {selectedFile.version}</div>
                                     </div>
                                     <div className="flex gap-sm">
                                         {selectedFile.tags.map(tag => (
@@ -298,16 +298,16 @@ function StudyViewerPage() {
                                 <div className="card-body" style={{ flex: 1, overflowY: 'auto' }}>
                                     <div className="markdown-content">
                                         <blockquote>
-                                            <strong>File location:</strong> <code>dropshipping_os_2026/outputs/report/{selectedFile.name}</code>
+                                            <strong>Ubicación del archivo:</strong> <code>dropshipping_os_2026/outputs/report/{selectedFile.name}</code>
                                         </blockquote>
                                         <p style={{ color: 'var(--text-muted)', marginTop: 'var(--space-lg)', textAlign: 'center' }}>
-                                            📂 This file is stored locally on your system.<br />
-                                            Open it in your editor or connect the API to render markdown here.
+                                            📂 Este archivo está almacenado localmente en tu sistema.<br />
+                                            Ábrelo en tu editor o conecta la API para renderizar el markdown aquí.
                                         </p>
                                         <div style={{ marginTop: 'var(--space-xl)', padding: 'var(--space-lg)', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
                                             <div style={{ fontSize: 32, marginBottom: 'var(--space-sm)' }}>{selectedFile.icon}</div>
                                             <h3 style={{ color: 'var(--text-primary)', marginBottom: 'var(--space-sm)' }}>{selectedFile.name}</h3>
-                                            <p className="text-sm text-muted">{selectedFile.size} · Agent: {selectedFile.agent}</p>
+                                            <p className="text-sm text-muted">{selectedFile.size} · Agente: {selectedFile.agent}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -315,8 +315,8 @@ function StudyViewerPage() {
                         ) : (
                             <div className="empty-state" style={{ flex: 1 }}>
                                 <div className="empty-state-icon">📄</div>
-                                <h3>Select a file to preview</h3>
-                                <p>Browse the study files on the left panel. Click to view details and metadata.</p>
+                                <h3>Selecciona un archivo para previsualizar</h3>
+                                <p>Explora los archivos de estudio en el panel izquierdo. Haz clic para ver detalles y metadatos.</p>
                             </div>
                         )}
                     </div>
@@ -327,7 +327,7 @@ function StudyViewerPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// METRICS PAGE
+// PÁGINA DE MÉTRICAS
 // ═══════════════════════════════════════════════════
 function MetricsPage() {
     const unitEconData = [
@@ -337,7 +337,7 @@ function MetricsPage() {
     ];
 
     const sensitivityCPM = [
-        { cpm: '€5.80', cm2: 3.61, status: 'Current' },
+        { cpm: '€5.80', cm2: 3.61, status: 'Actual' },
         { cpm: '€6.96', cm2: 1.61, status: '+20%' },
         { cpm: '€7.80', cm2: 0, status: 'Break-even' },
         { cpm: '€8.70', cm2: -1.39, status: '+50%' },
@@ -347,17 +347,17 @@ function MetricsPage() {
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Metrics Dashboard</h2>
-                    <div className="page-header-sub">Unit economics, sensitivity analysis, and financial projections</div>
+                    <h2>Panel de Métricas</h2>
+                    <div className="page-header-sub">Unit economics, análisis de sensibilidad y proyecciones financieras</div>
                 </div>
-                <span className="badge warning">Pre-launch — mock data</span>
+                <span className="badge warning">Pre-lanzamiento — datos simulados</span>
             </div>
             <div className="page-body">
-                {/* Unit Economics Comparison */}
+                {/* Comparativa Unit Economics */}
                 <div className="charts-grid equal mb-lg">
                     <div className="card">
                         <div className="card-header">
-                            <h3>CM2 by Channel (%)</h3>
+                            <h3>CM2 por Canal (%)</h3>
                         </div>
                         <div className="card-body">
                             <ResponsiveContainer width="100%" height={280}>
@@ -381,7 +381,7 @@ function MetricsPage() {
 
                     <div className="card">
                         <div className="card-header">
-                            <h3>CPM Sensitivity → CM2/Order</h3>
+                            <h3>Sensibilidad CPM → CM2/Pedido</h3>
                         </div>
                         <div className="card-body">
                             <ResponsiveContainer width="100%" height={280}>
@@ -393,7 +393,7 @@ function MetricsPage() {
                                         contentStyle={{ background: '#1a2236', border: '1px solid rgba(148,163,184,0.12)', borderRadius: 8, fontSize: 12, color: '#f1f5f9' }}
                                         formatter={(v) => [`€${v}`, '']}
                                     />
-                                    <Bar dataKey="cm2" name="CM2/Order" radius={[6, 6, 0, 0]}>
+                                    <Bar dataKey="cm2" name="CM2/Pedido" radius={[6, 6, 0, 0]}>
                                         {sensitivityCPM.map((entry, i) => (
                                             <Cell key={i} fill={entry.cm2 > 0 ? '#10b981' : '#ef4444'} />
                                         ))}
@@ -404,29 +404,29 @@ function MetricsPage() {
                     </div>
                 </div>
 
-                {/* Key Financial Metrics Table */}
+                {/* Tabla de Métricas Financieras */}
                 <div className="card">
                     <div className="card-header">
-                        <h3>Financial Summary — Base Scenario</h3>
+                        <h3>Resumen Financiero — Escenario Base</h3>
                     </div>
                     <div className="card-body">
                         <table className="data-table">
                             <thead>
                                 <tr>
-                                    <th>Metric</th>
-                                    <th>Month 1</th>
-                                    <th>Month 2</th>
-                                    <th>Month 3</th>
-                                    <th>90-Day Total</th>
+                                    <th>Métrica</th>
+                                    <th>Mes 1</th>
+                                    <th>Mes 2</th>
+                                    <th>Mes 3</th>
+                                    <th>Total 90 Días</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Orders/day</td><td>2</td><td>5</td><td>10</td><td>—</td></tr>
-                                <tr><td>Revenue</td><td style={{ color: 'var(--text-primary)' }}>€2,094</td><td style={{ color: 'var(--text-primary)' }}>€5,235</td><td style={{ color: 'var(--text-primary)' }}>€10,470</td><td style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>€17,799</td></tr>
-                                <tr><td>Ad Spend</td><td>€720</td><td>€1,500</td><td>€2,400</td><td>€4,620</td></tr>
-                                <tr><td>CAC</td><td>€12</td><td>€10</td><td>€8</td><td>€9.06 avg</td></tr>
-                                <tr><td>CM2 Total</td><td style={{ color: 'var(--accent-warning)' }}>€37</td><td style={{ color: 'var(--accent-success)' }}>€657</td><td style={{ color: 'var(--accent-success)' }}>€1,803</td><td style={{ color: 'var(--accent-success)', fontWeight: 700 }}>€2,497</td></tr>
-                                <tr><td>Cumulative P&L</td><td>€37</td><td>€694</td><td>€2,497</td><td style={{ color: 'var(--accent-success)', fontWeight: 700 }}>+€2,497</td></tr>
+                                <tr><td>Pedidos/día</td><td>2</td><td>5</td><td>10</td><td>—</td></tr>
+                                <tr><td>Ingresos</td><td style={{ color: 'var(--text-primary)' }}>€2.094</td><td style={{ color: 'var(--text-primary)' }}>€5.235</td><td style={{ color: 'var(--text-primary)' }}>€10.470</td><td style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>€17.799</td></tr>
+                                <tr><td>Gasto en Ads</td><td>€720</td><td>€1.500</td><td>€2.400</td><td>€4.620</td></tr>
+                                <tr><td>CAC</td><td>€12</td><td>€10</td><td>€8</td><td>€9,06 media</td></tr>
+                                <tr><td>CM2 Total</td><td style={{ color: 'var(--accent-warning)' }}>€37</td><td style={{ color: 'var(--accent-success)' }}>€657</td><td style={{ color: 'var(--accent-success)' }}>€1.803</td><td style={{ color: 'var(--accent-success)', fontWeight: 700 }}>€2.497</td></tr>
+                                <tr><td>P&L Acumulado</td><td>€37</td><td>€694</td><td>€2.497</td><td style={{ color: 'var(--accent-success)', fontWeight: 700 }}>+€2.497</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -437,7 +437,7 @@ function MetricsPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// AGENT HUB PAGE
+// PÁGINA HUB DE AGENTES
 // ═══════════════════════════════════════════════════
 function AgentHubPage() {
     const [selectedAgent, setSelectedAgent] = useState(null);
@@ -446,11 +446,11 @@ function AgentHubPage() {
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Agent Hub</h2>
-                    <div className="page-header-sub">6 agents · 15 subagents · V3.1 architecture</div>
+                    <h2>Hub de Agentes</h2>
+                    <div className="page-header-sub">6 agentes · 15 subagentes · Arquitectura V3.1</div>
                 </div>
                 <div className="flex gap-sm">
-                    <span className="status-indicator running">All Agents Healthy</span>
+                    <span className="status-indicator running">Todos los Agentes Operativos</span>
                 </div>
             </div>
             <div className="page-body">
@@ -467,10 +467,10 @@ function AgentHubPage() {
                                 </div>
                                 <div>
                                     <div className="agent-name">{agent.name}</div>
-                                    <div className="agent-role">Agent {agent.id} · {agent.subagents} subagents</div>
+                                    <div className="agent-role">Agente {agent.id} · {agent.subagents} subagentes</div>
                                 </div>
                                 <span className={`badge ${agent.health === 'green' ? 'success' : 'warning'}`} style={{ marginLeft: 'auto' }}>
-                                    {agent.health === 'green' ? '✓ Complete' : '⚠ Partial'}
+                                    {agent.health === 'green' ? '✓ Completo' : '⚠ Parcial — necesita datos reales'}
                                 </span>
                             </div>
                             <p className="text-sm text-muted">{agent.description}</p>
@@ -483,14 +483,16 @@ function AgentHubPage() {
                                 ))}
                             </div>
                             <div className="text-xs text-muted" style={{ marginTop: 'var(--space-sm)' }}>
-                                Last run: {agent.lastRun}
+                                Última ejecución: {agent.lastRun}
                             </div>
                             {selectedAgent?.id === agent.id && (
                                 <div style={{ marginTop: 'var(--space-md)', padding: 'var(--space-md)', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                                    <div className="text-xs text-muted mb-md">OUTPUTS</div>
-                                    <div className="text-sm">{agent.outputs} report file(s) + {agent.subagents} subagent output(s)</div>
-                                    <div className="text-xs text-muted mt-md">STATUS</div>
-                                    <div className="text-sm" style={{ color: 'var(--accent-success)' }}>■ All outputs generated and QA-checked</div>
+                                    <div className="text-xs text-muted mb-md">SALIDAS</div>
+                                    <div className="text-sm">{agent.outputs} archivo(s) de informe + {agent.subagents} salida(s) de subagente</div>
+                                    <div className="text-xs text-muted mt-md">ESTADO</div>
+                                    <div className="text-sm" style={{ color: agent.health === 'green' ? 'var(--accent-success)' : 'var(--accent-warning)' }}>
+                                        {agent.health === 'green' ? '■ Todas las salidas generadas y verificadas' : '■ 22% validado — necesita datos en vivo para completar'}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -502,17 +504,17 @@ function AgentHubPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// DECISION ENGINE PAGE
+// PÁGINA MOTOR DE DECISIONES
 // ═══════════════════════════════════════════════════
 function DecisionEnginePage() {
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Decision Engine</h2>
-                    <div className="page-header-sub">14 automated rules · YAML-defined · V5 compliant</div>
+                    <h2>Motor de Decisiones</h2>
+                    <div className="page-header-sub">14 reglas automatizadas · Definidas en YAML · Compatibles V5</div>
                 </div>
-                <span className="badge info">All rules in standby — waiting for live data</span>
+                <span className="badge info">Todas las reglas en espera — esperando datos reales</span>
             </div>
             <div className="page-body">
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }} className="stagger-children">
@@ -521,16 +523,16 @@ function DecisionEnginePage() {
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, minWidth: 140 }}>
                                 <span className="rule-id">{rule.id}</span>
                                 <span className={`badge ${rule.severity === 'CRITICAL' ? 'danger' : rule.severity === 'HIGH' ? 'warning' : rule.severity === 'MEDIUM' ? 'info' : 'primary'}`}>
-                                    {rule.severity}
+                                    {rule.severity === 'CRITICAL' ? 'CRÍTICO' : rule.severity === 'HIGH' ? 'ALTO' : rule.severity === 'MEDIUM' ? 'MEDIO' : 'BAJO'}
                                 </span>
                             </div>
                             <div className="rule-content">
-                                <div className="rule-trigger">IF: {rule.trigger}</div>
+                                <div className="rule-trigger">SI: {rule.trigger}</div>
                                 <div className="rule-action">→ {rule.action}</div>
                             </div>
                             <div style={{ textAlign: 'right', minWidth: 100 }}>
-                                <div className="status-indicator idle" style={{ justifyContent: 'flex-end' }}>Standby</div>
-                                <div className="text-xs text-muted" style={{ marginTop: 4 }}>Last: {rule.lastTriggered}</div>
+                                <div className="status-indicator idle" style={{ justifyContent: 'flex-end' }}>En espera</div>
+                                <div className="text-xs text-muted" style={{ marginTop: 4 }}>Última: {rule.lastTriggered}</div>
                             </div>
                         </div>
                     ))}
@@ -541,44 +543,44 @@ function DecisionEnginePage() {
 }
 
 // ═══════════════════════════════════════════════════
-// INVENTORY PAGE
+// PÁGINA DE INVENTARIO
 // ═══════════════════════════════════════════════════
 function InventoryPage() {
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Inventory & 3PL</h2>
-                    <div className="page-header-sub">8 SKUs planned · Primary 3PL: Huboo Spain (Barcelona)</div>
+                    <h2>Inventario y 3PL</h2>
+                    <div className="page-header-sub">8 SKUs planificados · 3PL Principal: Huboo España (Barcelona)</div>
                 </div>
-                <span className="badge warning">Pre-launch — no stock yet</span>
+                <span className="badge warning">Pre-lanzamiento — sin stock aún</span>
             </div>
             <div className="page-body">
-                {/* 3PL Status */}
+                {/* Estado 3PL */}
                 <div className="kpi-grid stagger-children mb-lg">
-                    <div className="kpi-card"><div className="kpi-label">Primary 3PL</div><div className="kpi-value" style={{ fontSize: 20 }}>Huboo 🇪🇸</div><div className="kpi-change neutral">Barcelona · Not onboarded</div></div>
-                    <div className="kpi-card"><div className="kpi-label">Pick + Pack</div><div className="kpi-value">€2.55</div><div className="kpi-change neutral">Per order estimate</div></div>
-                    <div className="kpi-card"><div className="kpi-label">Delivery SLA</div><div className="kpi-value">24-48h</div><div className="kpi-change neutral">Spain (SEUR)</div></div>
-                    <div className="kpi-card"><div className="kpi-label">Total SKUs</div><div className="kpi-value">8</div><div className="kpi-change neutral">Planned launch catalog</div></div>
+                    <div className="kpi-card"><div className="kpi-label">3PL Principal</div><div className="kpi-value" style={{ fontSize: 20 }}>Huboo 🇪🇸</div><div className="kpi-change neutral">Barcelona · No onboarded</div></div>
+                    <div className="kpi-card"><div className="kpi-label">Pick + Pack</div><div className="kpi-value">€2,55</div><div className="kpi-change neutral">Estimación por pedido</div></div>
+                    <div className="kpi-card"><div className="kpi-label">SLA Entrega</div><div className="kpi-value">24-48h</div><div className="kpi-change neutral">España (SEUR)</div></div>
+                    <div className="kpi-card"><div className="kpi-label">SKUs Totales</div><div className="kpi-value">8</div><div className="kpi-change neutral">Catálogo de lanzamiento planificado</div></div>
                 </div>
 
-                {/* Inventory Table */}
+                {/* Tabla de Inventario */}
                 <div className="card">
                     <div className="card-header">
-                        <h3>SKU Inventory</h3>
+                        <h3>Inventario por SKU</h3>
                     </div>
                     <div className="card-body" style={{ overflowX: 'auto' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>
                                     <th>SKU</th>
-                                    <th>Product</th>
+                                    <th>Producto</th>
                                     <th>Stock</th>
-                                    <th>Warehouse</th>
-                                    <th>Velocity</th>
-                                    <th>Days Left</th>
-                                    <th>Status</th>
-                                    <th>Supplier</th>
+                                    <th>Almacén</th>
+                                    <th>Velocidad</th>
+                                    <th>Días Rest.</th>
+                                    <th>Estado</th>
+                                    <th>Proveedor</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -588,7 +590,7 @@ function InventoryPage() {
                                         <td style={{ color: 'var(--text-primary)' }}>{item.name}</td>
                                         <td className="text-mono">{item.stock}</td>
                                         <td>{item.warehouse}</td>
-                                        <td className="text-mono">{item.velocity}/day</td>
+                                        <td className="text-mono">{item.velocity}/día</td>
                                         <td>{item.daysLeft}</td>
                                         <td><span className="badge warning">{item.status}</span></td>
                                         <td className="text-muted">{item.supplier}</td>
@@ -604,26 +606,26 @@ function InventoryPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// STORE CONNECTOR PAGE
+// PÁGINA CONECTOR DE TIENDAS
 // ═══════════════════════════════════════════════════
 function StoreConnectorPage() {
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Store Connector</h2>
-                    <div className="page-header-sub">Connect your stores to sync products, orders, and metrics</div>
+                    <h2>Conector de Tiendas</h2>
+                    <div className="page-header-sub">Conecta tus tiendas para sincronizar productos, pedidos y métricas</div>
                 </div>
             </div>
             <div className="page-body">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 'var(--space-md)' }} className="stagger-children">
                     {[
-                        { name: 'Shopify', icon: '🟢', color: '#96bf48', status: 'Not connected', description: 'Primary DTC store. Connect via Admin API key.', priority: 'PRIMARY' },
-                        { name: 'TikTok Shop', icon: '🎵', color: '#6366f1', status: 'Not connected', description: 'Social commerce. Requires EU stock + seller account.', priority: 'PHASE 2' },
-                        { name: 'Amazon Seller', icon: '📦', color: '#ff9900', status: 'Not connected', description: 'FBA/FBM. Requires Brand Registry.', priority: 'PHASE 3' },
-                        { name: 'Meta Ads', icon: '📱', color: '#3b82f6', status: 'Not connected', description: 'Ad metrics, campaign management, creative tracking.', priority: 'DAY 1' },
-                        { name: 'Klaviyo', icon: '✉️', color: '#8b5cf6', status: 'Not connected', description: 'Email/SMS flows, segments, and analytics.', priority: 'DAY 1' },
-                        { name: 'Huboo 3PL', icon: '🏭', color: '#10b981', status: 'Not connected', description: 'Stock levels, orders, and returns processing.', priority: 'DAY 30' },
+                        { name: 'Shopify', icon: '🟢', color: '#96bf48', status: 'No conectado', description: 'Tienda DTC principal. Conectar vía API clave Admin.', priority: 'PRINCIPAL' },
+                        { name: 'TikTok Shop', icon: '🎵', color: '#6366f1', status: 'No conectado', description: 'Comercio social. Requiere stock UE + cuenta vendedor.', priority: 'FASE 2' },
+                        { name: 'Amazon Seller', icon: '📦', color: '#ff9900', status: 'No conectado', description: 'FBA/FBM. Requiere Brand Registry.', priority: 'FASE 3' },
+                        { name: 'Meta Ads', icon: '📱', color: '#3b82f6', status: 'No conectado', description: 'Métricas de ads, gestión de campañas, tracking creativo.', priority: 'DÍA 1' },
+                        { name: 'Klaviyo', icon: '✉️', color: '#8b5cf6', status: 'No conectado', description: 'Flujos email/SMS, segmentos y analíticas.', priority: 'DÍA 1' },
+                        { name: 'Huboo 3PL', icon: '🏭', color: '#10b981', status: 'No conectado', description: 'Niveles de stock, pedidos y procesamiento de devoluciones.', priority: 'DÍA 30' },
                     ].map((store, i) => (
                         <div key={i} className="card" style={{ cursor: 'pointer' }}>
                             <div className="card-body">
@@ -639,7 +641,7 @@ function StoreConnectorPage() {
                                 </div>
                                 <p className="text-sm text-muted">{store.description}</p>
                                 <button className="btn btn-ghost w-full" style={{ marginTop: 'var(--space-md)', justifyContent: 'center' }}>
-                                    Connect →
+                                    Conectar →
                                 </button>
                             </div>
                         </div>
@@ -651,15 +653,15 @@ function StoreConnectorPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// ROADMAP PAGE
+// PÁGINA HOJA DE RUTA
 // ═══════════════════════════════════════════════════
 function RoadmapPage() {
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Roadmap</h2>
-                    <div className="page-header-sub">0 → 90 Day Execution Plan · Budget: €5,000</div>
+                    <h2>Hoja de Ruta</h2>
+                    <div className="page-header-sub">Plan de Ejecución 0 → 90 Días · Presupuesto: €5.000</div>
                 </div>
             </div>
             <div className="page-body">
@@ -674,10 +676,10 @@ function RoadmapPage() {
                                 }}>{i + 1}</span>
                                 <div>
                                     <h3>{phase.phase}</h3>
-                                    <span className="text-xs text-muted">Weeks {phase.weeks} · {phase.budget}</span>
+                                    <span className="text-xs text-muted">Semanas {phase.weeks} · {phase.budget}</span>
                                 </div>
                             </div>
-                            <span className="badge warning">Upcoming</span>
+                            <span className="badge warning">Próximamente</span>
                         </div>
                         <div className="card-body">
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-sm)' }}>
@@ -702,50 +704,51 @@ function RoadmapPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// VALIDATION PAGE
+// PÁGINA DE VALIDACIÓN
 // ═══════════════════════════════════════════════════
 function ValidationPage() {
     const metrics = [
-        { name: 'Spain CPM', value: '€5.80', source: 'Adamigo', status: 'partial', note: 'Real 2025 avg: $6.06. Jan 2026: $3.12. Conservative ✓' },
-        { name: 'Fashion CPM (global)', value: '$10.14', source: 'TryMesha 2025', status: 'validated', note: 'Multiple sources confirm $9-11' },
-        { name: 'Spain fashion CPM', value: '€6-8 est.', source: 'Inferred', status: 'assumed', note: 'No Spain-specific fashion data exists' },
-        { name: 'CTR benchmark', value: '1.0-2.0%', source: 'Industry avg', status: 'partial', note: 'Varies hugely by creative quality' },
-        { name: 'CVR Shopify', value: '2-3%', source: 'Industry', status: 'assumed', note: 'Must measure days 1-14' },
-        { name: 'CAC', value: '€10-12', source: 'Derived', status: 'assumed', note: 'Derived from CPM, not measured' },
-        { name: 'Return rate', value: '10%', source: 'Category avg', status: 'partial', note: 'Accessories 5-8%, clothing 20-30%' },
-        { name: 'AOV', value: '€35-38', source: 'Pricing plan', status: 'assumed', note: 'Depends on bundle adoption' },
-        { name: 'Repeat rate', value: '40% in 12mo', source: 'Klaviyo', status: 'assumed', note: 'Need 90+ days real data' },
-        { name: 'LTV', value: '€45-87', source: 'Derived', status: 'assumed', note: 'Based on unvalidated inputs' },
-        { name: 'CJ EU stock', value: 'Available', source: 'CJ website', status: 'partial', note: 'Not verified per SKU' },
-        { name: 'Huboo pick+pack', value: '€1.85', source: 'Rate card', status: 'partial', note: 'May vary with volume' },
-        { name: 'TikTok Shop 9%', value: '9%', source: 'TikTok SC', status: 'validated', note: 'Confirmed + 4% new seller' },
-        { name: 'Amazon 15%', value: '15%', source: 'Amazon SC', status: 'validated', note: 'Confirmed for >€20 fashion' },
-        { name: 'Shopify Payments', value: '1.9%+€0.25', source: 'Shopify', status: 'validated', note: 'Confirmed' },
-        { name: 'EU customs €3', value: '€3/tariff', source: 'EU Commission', status: 'validated', note: 'Official proposal July 2026' },
-        { name: 'COGS jewelry', value: '€3-6', source: 'Alibaba/CJ', status: 'partial', note: 'Pre-negotiation estimates' },
+        { name: 'CPM España', value: '€5,80', source: 'Adamigo', status: 'partial', note: 'Media real 2025: $6,06. Ene 2026: $3,12. Conservador ✓' },
+        { name: 'CPM Fashion (global)', value: '$10,14', source: 'TryMesha 2025', status: 'validated', note: 'Múltiples fuentes confirman $9-11' },
+        { name: 'CPM Fashion España', value: '€6-8 est.', source: 'Inferido', status: 'assumed', note: 'No existen datos específicos de fashion para España' },
+        { name: 'CTR benchmark', value: '1,0-2,0%', source: 'Media sector', status: 'partial', note: 'Varía mucho según calidad del creativo' },
+        { name: 'CVR Shopify', value: '2-3%', source: 'Sector', status: 'assumed', note: 'Debe medirse días 1-14' },
+        { name: 'CAC', value: '€10-12', source: 'Derivado', status: 'assumed', note: 'Derivado del CPM, no medido' },
+        { name: 'Tasa devol.', value: '10%', source: 'Media categoría', status: 'partial', note: 'Accesorios 5-8%, ropa 20-30%' },
+        { name: 'AOV', value: '€35-38', source: 'Plan de precios', status: 'assumed', note: 'Depende de adopción de bundles' },
+        { name: 'Tasa repetición', value: '40% en 12m', source: 'Klaviyo', status: 'assumed', note: 'Necesita 90+ días de datos reales' },
+        { name: 'LTV', value: '€45-87', source: 'Derivado', status: 'assumed', note: 'Basado en inputs sin validar' },
+        { name: 'Stock CJ UE', value: 'Disponible', source: 'Web CJ', status: 'partial', note: 'No verificado por SKU individual' },
+        { name: 'Huboo pick+pack', value: '€1,85', source: 'Tarifa', status: 'partial', note: 'Puede variar con volumen' },
+        { name: 'TikTok Shop 9%', value: '9%', source: 'TikTok SC', status: 'validated', note: 'Confirmado + 4% vendedor nuevo' },
+        { name: 'Amazon 15%', value: '15%', source: 'Amazon SC', status: 'validated', note: 'Confirmado para >€20 fashion' },
+        { name: 'Shopify Payments', value: '1,9%+€0,25', source: 'Shopify', status: 'validated', note: 'Confirmado' },
+        { name: 'Aduanas UE €3', value: '€3/arancel', source: 'Comisión UE', status: 'validated', note: 'Propuesta oficial julio 2026' },
+        { name: 'COGS joyería', value: '€3-6', source: 'Alibaba/CJ', status: 'partial', note: 'Estimaciones pre-negociación' },
     ];
 
     const statusColors = { validated: 'success', partial: 'warning', assumed: 'danger' };
+    const statusLabels = { validated: 'Validado', partial: 'Parcial', assumed: 'Supuesto' };
 
     return (
         <div className="fade-in">
             <div className="page-header">
                 <div>
-                    <h2>Data Validation</h2>
-                    <div className="page-header-sub">V6 audit · {validationStatus.total} metrics tracked</div>
+                    <h2>Validación de Datos</h2>
+                    <div className="page-header-sub">Auditoría V6 · {validationStatus.total} métricas monitorizadas</div>
                 </div>
                 <div className="flex gap-sm">
-                    <span className="badge success">{validationStatus.validated} Validated</span>
-                    <span className="badge warning">{validationStatus.partial} Partial</span>
-                    <span className="badge danger">{validationStatus.assumed} Assumed</span>
+                    <span className="badge success">{validationStatus.validated} Validadas</span>
+                    <span className="badge warning">{validationStatus.partial} Parciales</span>
+                    <span className="badge danger">{validationStatus.assumed} Supuestas</span>
                 </div>
             </div>
             <div className="page-body">
-                {/* Validation Progress */}
+                {/* Progreso de Validación */}
                 <div className="card mb-lg">
                     <div className="card-body">
                         <div className="flex items-center justify-between mb-md">
-                            <h3>Validation Progress</h3>
+                            <h3>Progreso de Validación</h3>
                             <span className="text-mono text-accent" style={{ fontSize: 24, fontWeight: 800 }}>{validationStatus.percentage}%</span>
                         </div>
                         <div style={{ width: '100%', height: 8, background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
@@ -758,26 +761,26 @@ function ValidationPage() {
                             }}></div>
                         </div>
                         <p className="text-xs text-muted mt-md">
-                            Only {validationStatus.percentage}% of metrics are fully validated. The rest require a live store + real ad campaigns to measure.
-                            This is expected for pre-launch — Go/No-Go gates will catch failures.
+                            Solo el {validationStatus.percentage}% de las métricas están completamente validadas. El resto requiere una tienda activa + campañas reales para poder medirse.
+                            Esto es normal en fase pre-lanzamiento — las Puertas Go/No-Go detectarán fallos.
                         </p>
                     </div>
                 </div>
 
-                {/* Metrics Table */}
+                {/* Tabla de Métricas */}
                 <div className="card">
                     <div className="card-header">
-                        <h3>All Tracked Metrics</h3>
+                        <h3>Todas las Métricas Monitorizadas</h3>
                     </div>
                     <div className="card-body" style={{ overflowX: 'auto' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>
-                                    <th>Metric</th>
-                                    <th>Value</th>
-                                    <th>Source</th>
-                                    <th>Status</th>
-                                    <th>Notes</th>
+                                    <th>Métrica</th>
+                                    <th>Valor</th>
+                                    <th>Fuente</th>
+                                    <th>Estado</th>
+                                    <th>Notas</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -786,7 +789,7 @@ function ValidationPage() {
                                         <td style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{m.name}</td>
                                         <td className="text-mono">{m.value}</td>
                                         <td className="text-muted">{m.source}</td>
-                                        <td><span className={`badge ${statusColors[m.status]}`}>{m.status}</span></td>
+                                        <td><span className={`badge ${statusColors[m.status]}`}>{statusLabels[m.status]}</span></td>
                                         <td className="text-muted" style={{ maxWidth: 300 }}>{m.note}</td>
                                     </tr>
                                 ))}
@@ -800,7 +803,7 @@ function ValidationPage() {
 }
 
 // ═══════════════════════════════════════════════════
-// MAIN APP
+// APP PRINCIPAL
 // ═══════════════════════════════════════════════════
 export default function App() {
     const [currentPage, setCurrentPage] = useState('dashboard');
